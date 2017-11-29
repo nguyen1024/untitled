@@ -44,13 +44,13 @@ echo //-------------------------------------------------------------------------
 
 sudo apt-get install -y terminator
 
-echo //------------------------------------------------------------------------------
-echo //
-echo // Install Subversion.
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Install Subversion.
+#echo //
+#echo //------------------------------------------------------------------------------
 
-sudo apt-get install -y subversion
+#sudo apt-get install -y subversion
 
 echo //------------------------------------------------------------------------------
 echo //
@@ -60,15 +60,15 @@ echo //-------------------------------------------------------------------------
 
 sudo apt-get install -y git
 
-echo //------------------------------------------------------------------------------
-echo //
-echo // Install C shell.
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Install C shell.
+#echo //
+#echo //------------------------------------------------------------------------------
 
 ## http://unix.stackexchange.com/questions/140286/how-to-find-list-of-available-shells-by-command-line
 
-sudo apt-get install -y csh
+#sudo apt-get install -y csh
 
 echo //------------------------------------------------------------------------------
 echo //
@@ -110,13 +110,13 @@ sudo apt-get install -y ntp
 echo // Set the time zone.
 sudo timedatectl set-timezone Australia/Melbourne
 
-echo //------------------------------------------------------------------------------
-echo //
-echo //
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Install Geospatial Data Abstraction Library.
+#echo //
+#echo //------------------------------------------------------------------------------
 
-sudo apt-get install -y libgdal-dev
+#sudo apt-get install -y libgdal-dev
 
 echo //------------------------------------------------------------------------------
 echo //
@@ -148,18 +148,18 @@ echo //-------------------------------------------------------------------------
 source /home/vagrant/.profile
 
 ## Set CBDI_ROOT.
-LOCAL_CBDI_ROOT=/vagrant/cbdi
-if [ -z "$CBDI_ROOT" ] || [ "$CBDI_ROOT" != "$LOCAL_CBDI_ROOT" ]; then
-    echo "export CBDI_ROOT=$LOCAL_CBDI_ROOT" >> /home/vagrant/.bashrc
-    echo "export CBDI_ROOT=$LOCAL_CBDI_ROOT" >> /home/vagrant/.profile
-fi
+#LOCAL_CBDI_ROOT=/vagrant/cbdi
+#if [ -z "$CBDI_ROOT" ] || [ "$CBDI_ROOT" != "$LOCAL_CBDI_ROOT" ]; then
+    #echo "export CBDI_ROOT=$LOCAL_CBDI_ROOT" >> /home/vagrant/.bashrc
+    #echo "export CBDI_ROOT=$LOCAL_CBDI_ROOT" >> /home/vagrant/.profile
+#fi
 
 ## Set IBA_ROOT.
-LOCAL_IBA_ROOT=/vagrant/iba
-if [ -z "$IBA_ROOT" ] || [ "$IBA_ROOT" != "$LOCAL_IBA_ROOT" ]; then
-    echo "export IBA_ROOT=$LOCAL_IBA_ROOT" >> /home/vagrant/.bashrc
-    echo "export IBA_ROOT=$LOCAL_IBA_ROOT" >> /home/vagrant/.profile
-fi
+#LOCAL_IBA_ROOT=/vagrant/iba
+#if [ -z "$IBA_ROOT" ] || [ "$IBA_ROOT" != "$LOCAL_IBA_ROOT" ]; then
+    #echo "export IBA_ROOT=$LOCAL_IBA_ROOT" >> /home/vagrant/.bashrc
+    #echo "export IBA_ROOT=$LOCAL_IBA_ROOT" >> /home/vagrant/.profile
+#fi
 
 ## Use display gui in display 0
 if [ -z "$DISPLAY" ] || [ "$DISPLAY" != ":0" ]; then
@@ -167,7 +167,7 @@ if [ -z "$DISPLAY" ] || [ "$DISPLAY" != ":0" ]; then
     echo "export DISPLAY=:0" >> /home/vagrant/.profile
 fi
 
-##
+## Get the current path.
 LOCAL_PATH=$PATH
 
 ## Add ccache to the path.
@@ -176,19 +176,19 @@ if [ -z "$PATH" ] || [[ "$PATH" != *"/usr/lib/ccache"* ]]; then
 fi
 
 ## Add C-BDI bin
-CBDI_BIN=$LOCAL_CBDI_ROOT/bin
-if [ -z "$PATH" ] || [[ "$PATH" != *"$CBDI_BIN"* ]]; then
-    LOCAL_PATH=$CBDI_BIN:$LOCAL_PATH
-fi
+#CBDI_BIN=$LOCAL_CBDI_ROOT/bin
+#if [ -z "$PATH" ] || [[ "$PATH" != *"$CBDI_BIN"* ]]; then
+    #LOCAL_PATH=$CBDI_BIN:$LOCAL_PATH
+#fi
 
 ## Add C-BDI tools to the path.
-CBDI_TOOLS=$LOCAL_CBDI_ROOT/tools
-if [ -z "$PATH" ] || [[ "$PATH" != *"$CBDI_TOOLS"* ]]; then
-    LOCAL_PATH=$CBDI_TOOLS:$LOCAL_PATH
-fi
+#CBDI_TOOLS=$LOCAL_CBDI_ROOT/tools
+#if [ -z "$PATH" ] || [[ "$PATH" != *"$CBDI_TOOLS"* ]]; then
+    #LOCAL_PATH=$CBDI_TOOLS:$LOCAL_PATH
+#fi
 
 ## Add qmake to the path.
-QMAKE_PATH=/home/vagrant/Qt/5.7/gcc_64/bin
+QMAKE_PATH=/home/vagrant/Qt/5.9/gcc_64/bin
 if [ -z "$PATH" ] || [[ "$PATH" != *"$QMAKE_PATH"* ]]; then
     LOCAL_PATH=$QMAKE_PATH:$LOCAL_PATH
 fi
@@ -210,12 +210,12 @@ echo //
 echo //------------------------------------------------------------------------------
 
 ## Get Qt source files.
-if [ ! -f "/vagrant/3rd_party/qt-opensource-linux-x64-5.7.0.run" ]; then
+if [ ! -f "/vagrant/3rd_party/qt-opensource-linux-x64-5.9.3.run" ]; then
     echo // Go to 3rd_party directory.
     pushd /vagrant/3rd_party
 
     echo // Downloading Qt.
-    wget -continue https://download.qt.io/archive/qt/5.7/5.7.0/qt-opensource-linux-x64-5.7.0.run
+    wget -continue https://download.qt.io/archive/qt/5.9/5.9.3/qt-opensource-linux-x64-5.9.3.run
 
     echo // Go to the previous directory.
     popd
@@ -246,32 +246,32 @@ if [ ! -d "/home/vagrant/Qt" ]; then
     sudo apt-get install -y xvfb
     export DISPLAY=:0
     cd /vagrant/iba
-    chmod u+x /vagrant/3rd_party/qt-opensource-linux-x64-5.7.0.run
-    /vagrant/3rd_party/qt-opensource-linux-x64-5.7.0.run --script qt-installer-noninteractive.qs --verbose -platform minimal
+    chmod u+x /vagrant/3rd_party/qt-opensource-linux-x64-5.9.3.run
+    /vagrant/3rd_party/qt-opensource-linux-x64-5.9.3.run --script qt-installer-noninteractive.qs --verbose -platform minimal
     cd -
 fi
 
-echo //------------------------------------------------------------------------------
-echo //
-echo // Start in specified directory.
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Start in specified directory.
+#echo //
+#echo //------------------------------------------------------------------------------
 
 ## http://www.grymoire.com/Unix/Sed.html
 ## http://stackoverflow.com/questions/17864047/automatically-chdir-to-vagrant-directory-upon-vagrant-ssh
 ## http://stackoverflow.com/questions/3557037/appending-a-line-to-a-file-only-if-it-does-not-already-exist
 
-grep -q -F 'cd /vagrant//iba' /home/vagrant/.bashrc || echo 'cd /vagrant/iba' >> /home/vagrant/.bashrc
+#grep -q -F 'cd /vagrant//iba' /home/vagrant/.bashrc || echo 'cd /vagrant/iba' >> /home/vagrant/.bashrc
 
-echo //------------------------------------------------------------------------------
-echo //
-echo // Required by C-BDI.
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Required by C-BDI.
+#echo //
+#echo //------------------------------------------------------------------------------
 
 ## http://stackoverflow.com/questions/37550993/rstudio-installation-failure-under-debian-sid-libgstreamer-dependency-problems
 
-sudo apt-get install -y libgstreamer0.10-0 libgstreamer-plugins-base0.10-0
+#sudo apt-get install -y libgstreamer0.10-0 libgstreamer-plugins-base0.10-0
 
 echo //------------------------------------------------------------------------------
 echo //
@@ -292,9 +292,9 @@ sudo apt-get install -y mysql-server
 ## https://askubuntu.com/questions/82374/how-do-i-start-stop-mysql-server
 sudo /etc/init.d/mysql start
 
-## If you install 5.7 and don’t provide a password to the root user, it will 
-## use the auth_socket plugin. That plugin doesn’t care and doesn’t need a 
-## password. It just checks if the user is connecting using a UNIX socket and 
+## If you install 5.7 and don’t provide a password to the root user, it will
+## use the auth_socket plugin. That plugin doesn’t care and doesn’t need a
+## password. It just checks if the user is connecting using a UNIX socket and
 ## then compares the username.
 ## https://askubuntu.com/questions/766334/cant-login-as-mysql-user-root-from-normal-user-account-in-ubuntu-16-04
 ## https://stackoverflow.com/questions/8055694/how-to-execute-a-mysql-command-from-a-shell-script
@@ -303,93 +303,93 @@ sudo /etc/init.d/mysql start
 
 sudo apt-get install mysql-client
 
-echo //------------------------------------------------------------------------------
-echo //
-echo // 
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Backup the database.
+#echo //
+#echo //------------------------------------------------------------------------------
 
-echo // Go to the database directory.
-pushd /vagrant/iba/db
+#echo // Go to the database directory.
+#pushd /vagrant/iba/db
 
-echo // Backup the database.
-echo // Get current date and time.
-TODAY=`date '+%Y_%m_%d_%H_%M_%S'`;
-mysql -uroot -ppassword iba > iba.sql.$TODAY
+#echo // Backup the database.
+#echo // Get current date and time.
+#TODAY=`date '+%Y_%m_%d_%H_%M_%S'`;
+#mysql -uroot -ppassword iba > iba.sql.$TODAY
 
-echo // Drop the database.
-mysql -uroot -ppassword -Bse "DROP DATABASE iba;"
+#echo // Drop the database.
+#mysql -uroot -ppassword -Bse "DROP DATABASE iba;"
 
-echo // Create a database.
-mysql -uroot -ppassword -Bse "CREATE SCHEMA iba;"
+#echo // Create a database.
+#mysql -uroot -ppassword -Bse "CREATE SCHEMA iba;"
 
-echo // Populate the database.
-mysql -uroot -ppassword iba < iba.sql
+#echo // Populate the database.
+#mysql -uroot -ppassword iba < iba.sql
 
-echo // Go to the previous directory.
-popd
+#echo // Go to the previous directory.
+#popd
 
-echo //------------------------------------------------------------------------------
-echo //
-echo // 
-echo //
-echo //------------------------------------------------------------------------------
+#echo //------------------------------------------------------------------------------
+#echo //
+#echo // Build the Qt SQL driver.
+#echo //
+#echo //------------------------------------------------------------------------------
 
 ## Create a symbolic link.
 ## https://stackoverflow.com/questions/638975/how-do-i-tell-if-a-regular-file-does-not-exist-in-bash
-if [ ! -f /usr/lib/x86_64-linux-gnu/libmysqlclient_r.so ]; then
-    pushd /usr/lib/x86_64-linux-gnu
-    sudo ln -s libmysqlclient.so libmysqlclient_r.so
-    popd
-fi
+#if [ ! -f /usr/lib/x86_64-linux-gnu/libmysqlclient_r.so ]; then
+    #pushd /usr/lib/x86_64-linux-gnu
+    #sudo ln -s libmysqlclient.so libmysqlclient_r.so
+    #popd
+#fi
 
 ## Get Qt source files.
-if [ ! -f "/vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0.zip" ]; then
-    echo // Go to the 3rd_party directory.
-    pushd /vagrant/3rd_party
+#if [ ! -f "/vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0.zip" ]; then
+    #echo // Go to the 3rd_party directory.
+    #pushd /vagrant/3rd_party
 
     ## https://www.cyberciti.biz/tips/wget-resume-broken-download.html
-    echo // Download Qt source files.
-    wget -continue https://download.qt.io/archive/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.zip
+    #echo // Download Qt source files.
+    #wget -continue https://download.qt.io/archive/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.zip
 
-    echo // Go to the previous directory.
-    popd
-fi
+    #echo // Go to the previous directory.
+    #popd
+#fi
 
 ## Unzip Qt source files.
-if [ ! -d "/vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0" ]; then
-    pushd /vagrant/3rd_party
-    7z x qt-everywhere-opensource-src-5.7.0.zip
-    popd
-fi
+#if [ ! -d "/vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0" ]; then
+    #pushd /vagrant/3rd_party
+    #7z x qt-everywhere-opensource-src-5.7.0.zip
+    #popd
+#fi
 
-echo // Change to source directory.
-pushd /vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0/qtbase/src/plugins/sqldrivers/mysql
+#echo // Change to source directory.
+#pushd /vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0/qtbase/src/plugins/sqldrivers/mysql
 
-echo // Generate Makefile.
-qmake "INCLUDEPATH+=/usr/local/include /usr/local/include/mysql" "LIBS+=-L/usr/local/lib -L/usr/lib/x86_64-linux-gnu -lmysqlclient"
+#echo // Generate Makefile.
+#qmake "INCLUDEPATH+=/usr/local/include /usr/local/include/mysql" "LIBS+=-L/usr/local/lib -L/usr/lib/x86_64-linux-gnu -lmysqlclient"
 
-echo // Make.
-make
+#echo // Make.
+#make
 
-echo // Change to SQL driver directory.
-pushd /home/vagrant/Qt/5.7/gcc_64/plugins/sqldrivers
+#echo // Change to SQL driver directory.
+#pushd /home/vagrant/Qt/5.7/gcc_64/plugins/sqldrivers
 
 ## https://unix.stackexchange.com/questions/57590/appending-a-current-date-from-a-variable-to-a-filename
-echo // Get current date and time.
-TODAY=`date '+%Y_%m_%d_%H_%M_%S'`;
+#echo // Get current date and time.
+#TODAY=`date '+%Y_%m_%d_%H_%M_%S'`;
 
-echo // Backup SQL driver.
-mv libqsqlmysql.so libqsqlmysql.so.$TODAY
+#echo // Backup SQL driver.
+#mv libqsqlmysql.so libqsqlmysql.so.$TODAY
 
-echo // Copy SQL driver.
-cp /vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0/qtbase/plugins/sqldrivers/libqsqlmysql.so .
+#echo // Copy SQL driver.
+#cp /vagrant/3rd_party/qt-everywhere-opensource-src-5.7.0/qtbase/plugins/sqldrivers/libqsqlmysql.so .
 
-echo // Go to previous directory.
-popd
+#echo // Go to previous directory.
+#popd
 
-echo // Go to previous directory.
-popd
+#echo // Go to previous directory.
+#popd
 
 echo //------------------------------------------------------------------------------
 echo //
