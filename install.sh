@@ -188,7 +188,7 @@ fi
 #fi
 
 ## Add qmake to the path.
-QMAKE_PATH=/home/vagrant/Qt/5.9/gcc_64/bin
+QMAKE_PATH=/home/vagrant/Qt/5.9.3/gcc_64/bin
 if [ -z "$PATH" ] || [[ "$PATH" != *"$QMAKE_PATH"* ]]; then
     LOCAL_PATH=$QMAKE_PATH:$LOCAL_PATH
 fi
@@ -244,11 +244,13 @@ fi
 
 if [ ! -d "/home/vagrant/Qt" ]; then
     sudo apt-get install -y xvfb
+    # The Qt install requires a screen.
     export DISPLAY=:0
-    cd /vagrant/iba
+    pushd /vagrant/untitled
+    # Make the Qt package executable.
     chmod u+x /vagrant/3rd_party/qt-opensource-linux-x64-5.9.3.run
     /vagrant/3rd_party/qt-opensource-linux-x64-5.9.3.run --script qt-installer-noninteractive.qs --verbose -platform minimal
-    cd -
+    popd
 fi
 
 #echo //------------------------------------------------------------------------------

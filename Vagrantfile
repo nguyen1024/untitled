@@ -58,8 +58,8 @@ Vagrant.configure("2") do |config|
     config.gui = true
 
     ## Set the amount of meory in megabytes.
-    config.vmx["memsize"] = "8192"
-    ##config.vmx["memsize"] = "4096"
+    ##config.vmx["memsize"] = "8192"
+    config.vmx["memsize"] = "4096"
 
     ## Set the number of processors.
     config.vmx["numvcpus"] = "4"
